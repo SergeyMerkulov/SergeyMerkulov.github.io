@@ -1,14 +1,52 @@
+<!DOCTYPE html> 									<!-- HTML5 -->
 <html>
-<head>
-<script>
-function jsTestMessage()
-{
-	alert("js is working");
-}
-</script>
-</head>
-<body>
-<h1>Hello World!</h1>
-<button onclick="jsTestMessage();">js test</button>
-</body>
+ <head>
+  <!-- <meta charset="utf-8"> -->							<!-- кодировка для корректного отображения кириллицы (не работает) -->
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->	<!-- кодировка для корректного отображения кириллицы (не работает) -->
+  <title>games</title>							<!-- очень важно для поисковых систем -->
+  <meta name="description" content="free online games">
+  <meta name="keywords" content="game, games, play, free, online">
+  <meta name="author" content="Sergey Merkulov">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">		<!-- настройка области просмотра, чтобы страница выглядела хорошо на всех устройствах (пк, смартфон, планшет и т.д.) -->
+  <meta name="robots" content="index, follow">						<!-- указать поисковому роботу что надо индексировать данную страницу и слеовать по ней. Если этого не надо то используются "noindex, nofollow" -->
+  <!-- <meta http-equiv="refresh" content="30"> -->					<!-- на случай если надо чтобы данная страница самообновлялась каждые 30 секунд -->
+  <!-- <meta http-equiv="refresh" content="5; URL=http://www.other_page.ru">		<!-- на случай если надо чтобы данная страница перешла на другую страницу через 5 секунд после загрузки -->
+  <link type="text/css" rel="stylesheet" href="style.css" />
+ </head>
+ <body>
+	<header>
+		<h1>Free Online Games</h1>							<!-- тег h1 д.б. один единственный на странице и он важен для поисковых систем, в нем д.б. ключевые слова или ключевая фраза -->
+		<div class="title">
+			<span class="slogan">If you read this text, then I congratulate you, you can read!</span>
+			<span class="phone">freedms@yandex.ru</span>
+		</div>
+		<details>
+			<summary>Select game</summary> 
+			<nav>
+				<ul>
+				<li><a href="tetris.html">tetris</a></li>
+				<li><a href="tetris_for_idiots.html">tetris for idiots</a></li>
+				</ul>
+			</nav>
+		</details>
+	</header>
+	<article>
+		The list of free games:
+		<br>
+		<picture>
+			<a href="tetris.html">
+ 			<img src="images/tetris.gif">
+			</a>
+		</picture>
+		<picture>
+			<a href="tetris_for_idiots.html">
+ 			<img src="images/tetris_for_idiots.gif">
+			</a>
+		</picture>
+	</article>
+	<footer>
+		Copyright 2019 - SergeyMerkulov.github.io
+	</footer>
+	<!-- загрузка javascript скриптов должна осуществляться после загрузки остальной основной части сайта. Это важно для поисковых систем и пользователей! -->
+ </body>
 </html>
