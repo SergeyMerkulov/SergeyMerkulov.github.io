@@ -1,0 +1,408 @@
+<html>
+<head>
+</head>
+<body onload="initRandom();">
+<script>
+
+//ширина и высота поля в кубиках
+var W = 80;
+var H = 80;
+
+//ширина и высота одного кубика
+var W_BOX = 5;
+var H_BOX = 5;
+
+//поколения
+var gen1 = new Array(W*H);
+var gen2 = new Array(W*H);
+
+//счётчик соседей
+var hur = 0;
+
+//колличество соседей для рождения
+var HUR_FOR_BORN = 3;
+//колличество соседей (вместе с самой особью) для продолжения жизни
+var HUR_FOR_LIFE1 = 3;
+var HUR_FOR_LIFE2 = 4;
+
+
+
+
+var canvas;
+var context;
+
+
+
+
+
+function initRandom()
+{
+
+
+canvas = window.document.getElementById("a");
+	canvas.height = 400;
+	canvas.width = 400;
+	context = canvas.getContext("2d");
+
+canvas.addEventListener('mousedown', mouseDown, false);
+
+
+	//инициализация
+	for(i=0;i<gen1.length;i++)
+	{
+		//gen1[i] = rand(0,1);
+		if( rand(0,3) == 2 )
+		{
+			gen1[i] = 1;
+		}
+		else
+		{
+			gen1[i] = 0;
+		}
+	}
+	
+
+	//отрисовка поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			if( gen1[y*W+x] == 1 )
+			{
+				context.fillStyle = "#ff0000";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+			else
+			{
+				context.fillStyle = "#aaaaff";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+		}
+	}
+}
+
+
+
+
+function initPlaner()
+{
+	canvas = window.document.getElementById("a");
+	canvas.height = 400;
+	canvas.width = 400;
+	context = canvas.getContext("2d");
+
+	//инициализация
+	for(i=0;i<gen1.length;i++)
+	{
+		gen1[i] = 0;
+	}
+
+	gen1[1+W] = 1;
+	
+	gen1[2+W*2] = 1;
+	gen1[3+W*2] = 1;
+	gen1[1+W*3] = 1;
+	gen1[2+W*3] = 1;
+
+	//отрисовка поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			if( gen1[y*W+x] == 1 )
+			{
+				context.fillStyle = "#ff0000";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+			else
+			{
+				context.fillStyle = "#aaaaff";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+		}
+	}
+}
+
+
+
+function initGliderGun()
+{
+	canvas = window.document.getElementById("a");
+	canvas.height = 400;
+	canvas.width = 400;
+	context = canvas.getContext("2d");
+
+	//инициализация
+	for(i=0;i<gen1.length;i++)
+	{
+		gen1[i] = 0;
+	}
+
+
+	
+	gen1[2+W*6] = 1;
+	gen1[3+W*6] = 1;
+	gen1[2+W*7] = 1;
+	gen1[3+W*7] = 1;
+
+	gen1[12+W*6] = 1;
+	gen1[12+W*7] = 1;
+	gen1[12+W*8] = 1;
+
+	gen1[13+W*5] = 1;
+	gen1[13+W*9] = 1;
+
+	gen1[14+W*4] = 1;
+	gen1[14+W*10] = 1;
+
+	gen1[15+W*4] = 1;
+	gen1[15+W*10] = 1;
+
+	gen1[16+W*7] = 1;
+
+	gen1[17+W*5] = 1;
+	gen1[17+W*9] = 1;
+
+	gen1[18+W*6] = 1;
+	gen1[18+W*7] = 1;
+	gen1[18+W*8] = 1;
+
+	gen1[19+W*7] = 1;
+
+	gen1[22+W*4] = 1;
+	gen1[22+W*5] = 1;
+	gen1[22+W*6] = 1;
+
+	gen1[23+W*4] = 1;
+	gen1[23+W*5] = 1;
+	gen1[23+W*6] = 1;
+
+	gen1[24+W*3] = 1;
+	gen1[24+W*7] = 1;
+
+	gen1[26+W*2] = 1;
+	gen1[26+W*3] = 1;
+	gen1[26+W*7] = 1;
+	gen1[26+W*8] = 1;
+
+	gen1[36+W*4] = 1;
+	gen1[36+W*5] = 1;
+	gen1[37+W*4] = 1;
+	gen1[37+W*5] = 1;
+
+
+	//отрисовка поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			if( gen1[y*W+x] == 1 )
+			{
+				context.fillStyle = "#ff0000";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+			else
+			{
+				context.fillStyle = "#aaaaff";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+		}
+	}
+}
+
+
+
+
+
+function initClear()
+{
+	canvas = window.document.getElementById("a");
+	canvas.height = 400;
+	canvas.width = 400;
+	context = canvas.getContext("2d");
+
+	//инициализация
+	for(i=0;i<gen1.length;i++)
+	{
+		gen1[i] = 0;
+	}
+
+	//отрисовка поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			if( gen1[y*W+x] == 1 )
+			{
+				context.fillStyle = "#ff0000";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+			else
+			{
+				context.fillStyle = "#aaaaff";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+		}
+	}
+}
+
+
+
+
+function f()
+{
+	canvas = window.document.getElementById("a");
+	canvas.height = 400;
+	canvas.width = 400;
+	context = canvas.getContext("2d");
+
+	
+	
+	//расчёт следующего поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			hur = 0;
+
+			for(j=-1;j<=1;j++)
+			{
+				for(i=-1;i<=1;i++)
+				{
+				
+					if( y+j<H && y-j>=0 && x+i<W && x-i>=0 )
+					{
+						if( gen1[(y+j)*W+(x+i)] == 1 )
+						{
+							hur++;
+						}
+					}
+			
+				}	
+			}
+
+			if( gen1[y*W+x] == 0 )
+			{
+				if( hur == HUR_FOR_BORN )
+				{
+					gen2[y*W+x]=1;
+				}
+				else
+				{
+					gen2[y*W+x]=0;
+				}
+			}
+			else
+			{
+				if( hur == HUR_FOR_LIFE1 || hur == HUR_FOR_LIFE2 )
+				{
+					gen2[y*W+x]=1;
+				}
+				else
+				{
+					gen2[y*W+x]=0;
+				}
+			}
+		}
+	}
+
+	//отрисовка поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			if( gen2[y*W+x] == 1 )
+			{
+				context.fillStyle = "#ff0000";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+			else
+			{
+				context.fillStyle = "#aaaaff";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+		}
+	}
+
+	//перенос текущего поколения в предыдущее для следующей итерации
+	for(i=0;i<gen1.length;i++)
+	{
+		gen1[i] = gen2[i];
+	}
+
+}
+
+//рандом включая верхнюю и нижнюю границы
+function rand(min,max)
+{
+	return min + Math.floor(Math.random()*(max+1));
+}
+
+
+var keyRun = true;
+
+
+function gameLoop()
+{
+	window.setTimeout(gameLoop,50);
+	if(keyRun)f();
+}
+
+gameLoop();
+
+
+function mouseDown(e)
+{
+	var rect = window.document.getElementById("a").getBoundingClientRect();
+	var x_ = e.clientX - rect.left;
+	var y_ = e.clientY - rect.top;
+	//alert("x="+x+" y="+y);
+	var x_ind = parseInt(Math.floor(x_/W_BOX));
+	var y_ind = parseInt(Math.floor(y_/H_BOX));
+
+	if( gen1[y_ind*W+x_ind] == 0 )
+	{
+		gen1[y_ind*W+x_ind] = 1;
+	}
+	else
+	{
+		gen1[y_ind*W+x_ind] = 0;
+	}
+
+
+	var context = window.document.getElementById("a").getContext("2d");
+
+	//отрисовка поколения
+	for(y=0;y<H;y++)
+	{
+		for(x=0;x<W;x++)
+		{
+			if( gen1[y*W+x] == 1 )
+			{
+				context.fillStyle = "#ff0000";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+			else
+			{
+				context.fillStyle = "#aaaaff";
+				context.fillRect(x*W_BOX,y*H_BOX,W_BOX,H_BOX);
+			}
+		}
+	}
+
+}
+
+
+</script>
+<canvas id="a" onmousedown="chGen(e);">not working</canvas>
+<br>
+<button onclick="keyRun=true;">run</button>
+<button onclick="keyRun=false;">stop</button>
+<button onclick="initRandom();">random init</button>
+<button onclick="f();">next steep</button>
+<br>
+<button onclick="initClear();">clear</button>
+<button onclick="initPlaner();">planer</button>
+<button onclick="initGliderGun();">gun</button>
+</body>
+</html>
