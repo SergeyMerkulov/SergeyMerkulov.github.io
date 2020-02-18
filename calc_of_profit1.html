@@ -1,5 +1,7 @@
+<!DOCTYPE html> 	
 <html>
 <head>
+<meta charset="windows-1251">
 </head>
 <body>
 <style>
@@ -9,7 +11,6 @@
 }
 </style type="text/css">
 <script>
-//Тогда давайте например возьмем 20% годовых. Если в год 20% то в месяц получается 20/12=1.7% (если не ошибаюсь). Тогда месяц1 даст 350*0.017+350=355.95 минус 10$ комиссии = 345.95
 function calc()
 {
 	var money = parseFloat(document.getElementById("start").value);
@@ -30,35 +31,48 @@ function calc()
 	{
 		proc = (Math.ceil(proc*1000)/1000)
 	}
-	var out = "процент в месяц="+proc+"<br>";
+	var out = "percent per month="+proc+"<br><br>";
 	var moco = 0;
 	var year = 0;
+	var co = "black";
 	for(i=0;i<mon;i++)
 	{
 		money += money*proc*0.01;
 		money -= com;
-		out += "месяц номер "+(i+1)+", капитал= <span class='bol'>"+(Math.ceil(money*100)/100) +"</span> долларов США <br>"
+
+		if(money>0)
+		{
+			co="green";
+		}
+		else
+		{
+			co="red";
+		}
+		
+		out += "month "+(i+1)+", money= <span style='color: "+co+";'> <span class='bol'>"+(Math.ceil(money*100)/100) +"</span></span> $ <br>"
+		
+
 		moco++;
 		if(moco>=12)
 		{
 			year++;
 			moco=0
-			out += "________________год номер "+year+" __________________________<br>";
+			out += "_____year "+year+" _____<br>";
 		}
 	}
 	document.getElementById("out").innerHTML = out;
 }
 </script>
 <form name="f">
-начальная сумма<input id="start" value="350">$<br>
-процент годовых<input id="proc" value="20">%<br>
-срок инвестирования в месяцах<input id="mon" value="120"><br>
-комиссия в месяц<input id="com" value="10">$<br>
-округлить процент в месяц до:<br>
-десятых<input name="ok" type="radio" id="ok10" checked="checked"><br>
-сотых<input name="ok" type="radio" id="ok100"><br>
-тысячных<input name="ok" type="radio" id="ok1000"><br>
-не округлять<input name="ok" type="radio" id="okN"><br>
+start money<input id="start" value="350">$<br>
+percent per year<input id="proc" value="20">%<br>
+investment period per months<input id="mon" value="120">months<br>
+broker's commission<input id="com" value="10">$<br>
+ceil percent per month to:<br>
+10<input name="ok" type="radio" id="ok10" checked="checked"><br>
+100<input name="ok" type="radio" id="ok100"><br>
+1000<input name="ok" type="radio" id="ok1000"><br>
+none<input name="ok" type="radio" id="okN"><br>
 <input type="button" value="рассчитать" onclick="calc()"><br>
 </form>
 <div id="out"></div>
