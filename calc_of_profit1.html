@@ -1,0 +1,66 @@
+<html>
+<head>
+</head>
+<body>
+<style>
+.bol
+{
+	font-weight: bold;
+}
+</style type="text/css">
+<script>
+//“огда давайте например возьмем 20% годовых. ≈сли в год 20% то в мес€ц получаетс€ 20/12=1.7% (если не ошибаюсь). “огда мес€ц1 даст 350*0.017+350=355.95 минус 10$ комиссии = 345.95
+function calc()
+{
+	var money = parseFloat(document.getElementById("start").value);
+	var proc = parseFloat(document.getElementById("proc").value);
+	var mon = parseInt(document.getElementById("mon").value);
+	var com = parseFloat(document.getElementById("com").value);
+	proc/=12;
+
+	if( document.getElementById("ok10").checked )
+	{
+		proc = (Math.ceil(proc*10)/10)
+	}
+	else if( document.getElementById("ok100").checked )
+	{
+		proc = (Math.ceil(proc*100)/100)
+	}
+	else if( document.getElementById("ok1000").checked )
+	{
+		proc = (Math.ceil(proc*1000)/1000)
+	}
+	var out = "процент в мес€ц="+proc+"<br>";
+	var moco = 0;
+	var year = 0;
+	for(i=0;i<mon;i++)
+	{
+		money += money*proc*0.01;
+		money -= com;
+		out += "мес€ц номер "+(i+1)+", капитал= <span class='bol'>"+(Math.ceil(money*100)/100) +"</span> долларов —Ўј <br>"
+		moco++;
+		if(moco>=12)
+		{
+			year++;
+			moco=0
+			out += "________________год номер "+year+" __________________________<br>";
+		}
+	}
+	document.getElementById("out").innerHTML = out;
+}
+</script>
+<form name="f">
+начальна€ сумма<input id="start" value="350">$<br>
+процент годовых<input id="proc" value="20">%<br>
+срок инвестировани€ в мес€цах<input id="mon" value="120"><br>
+комисси€ в мес€ц<input id="com" value="10">$<br>
+округлить процент в мес€ц до:<br>
+дес€тых<input name="ok" type="radio" id="ok10" checked="checked"><br>
+сотых<input name="ok" type="radio" id="ok100"><br>
+тыс€чных<input name="ok" type="radio" id="ok1000"><br>
+не округл€ть<input name="ok" type="radio" id="okN"><br>
+<input type="button" value="рассчитать" onclick="calc()"><br>
+</form>
+<div id="out"></div>
+</body>
+</html>
