@@ -51,11 +51,30 @@
 			</a>
 		</picture>
 	</article>
+	<article>
+		<form name="helloForm">
+			<input type="button" value="send hello" onclick="sendHello();">
+		</form>
+	</article>
 	<footer>
 		Copyright 2019 - SergeyMerkulov.github.io
 	</footer>
 	<!-- загрузка javascript скриптов должна осуществляться после загрузки остальной основной части сайта. Это важно для поисковых систем и пользователей! -->
  
+
+<script type="text/javascript" >
+
+function sendHello()
+{
+fetch('https://cloud-api.yandex.net/v1/disk/')
+.then(response => response.text())
+.then(response => alert(response));
+
+
+}
+</script>
+
+
 
 
 <!-- Yandex.Metrika counter -->
