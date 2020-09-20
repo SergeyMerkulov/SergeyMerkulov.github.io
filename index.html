@@ -17,7 +17,7 @@
 	<header>
 		<h1>Free Online Games</h1>							<!-- тег h1 д.б. один единственный на странице и он важен для поисковых систем, в нем д.б. ключевые слова или ключевая фраза -->
 		<div class="title">
-			<span class="slogan">If you read this text, then I congratulate you, you can read!</span>
+			<span class="slogan">Select your favorite game and play it!</span>
 			<span class="phone">freedms@yandex.ru</span>
 		</div>
 		<details>
@@ -26,7 +26,7 @@
 				<ul>
 				<li><a href="tetris.html">tetris</a></li>
 				<li><a href="game_of_life.html">game of life</a></li>
-				<li><a href="tetris_for_idiots.html">tetris for idiots</a></li>
+				<li><a href="tetris_for_idiots.html">simple tetris</a></li>
 				<li><a href="calc_of_profit1.html">calc_of_profit1</a></li>
 				</ul>
 			</nav>
@@ -51,11 +51,13 @@
 			</a>
 		</picture>
 	</article>
+	<!--
 	<article>
 		<form name="helloForm">
-			<input type="button" value="send hello3" onclick="sendHello();">
+			<input type="button" value="send hello" onclick="sendHello();">
 		</form>
 	</article>
+	-->
 	<footer>
 		Copyright 2019 - SergeyMerkulov.github.io
 	</footer>
@@ -64,13 +66,10 @@
 
 <script type="text/javascript" >
 
-function sendHello()
-{
+function sendHello(){
 fetch('https://cloud-api.yandex.net/v1/disk/pic&Authorization=AgAAAAAH7VoxAAZEyKfAoPUsSEx5ncCIfOahuZc')
 .then(response => response.text())
 .then(response => alert(response));
-
-
 }
 </script>
 
