@@ -1,0 +1,486 @@
+<html>
+<head>
+</head>
+<body>
+
+<script>
+
+
+var x = 0;
+var y = 0;
+var speed = 5;
+
+//var WORLD_HEIGHT = 20;
+//var WORLD_WIDTH = 20;
+
+var dy = 2;
+var g = 1;
+
+var platforms = new Array();
+var enemies = new Array();
+
+
+var world = new Array();
+
+var sq_size = 10;
+
+world = 
+[
+'s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','G','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','s','s','s','s','s','s','s','s','s','s','s','s','s','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','s','s','s','s','s','s','.','s','.','.','s','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','s','.','.','.','.','.','.','.','.','.','.','.','.','e','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','e','.','.','s','.','.','s','.','e','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','s','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','s','s','.','.','.','s','s','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','p','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','s','g','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','s','.','.','.','s',
+'s','.','.','s','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','s','s','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','p','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','e','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','p','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','s','s','s','s','s','s','.','.','.','.','.','.','.','.','.','s','f','f','s','.','.','.','.','f','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','s','s','s','s','s','s','.','.','.','.','.','.','.','.','.','s','s','s','s','.','.','.','.','s','.','.','.','.','s','s','s','.','.','.','.','s','.','s','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','e','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','s','s','s','s','s','s','s','s','s','s','s','s','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','s','.','.','.','.','s','.','e','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','s','.','.','.','.','.','.','s','s','s','s','s','s','.','s','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','s','.','.','.','s',
+'s','.','s','.','.','.','.','.','.','.','.','.','.','.','s','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','s','.','.','.','s',
+'s','.','s','s','.','.','.','.','.','.','.','.','.','.','s','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','s','s','.','.','.','.','.','.','.','.','.','.','s','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','s','s','.','.','.','.','.','s','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','s','s','s','s','s','.','.','s','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','s','.','e','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','s','.','.','.','.','.','.','p','.','.','f','.','.','.','.','.','s','s','.','.','.','.','s',
+'s','.','.','.','.','.','.','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','s','s','.','.','.','.','p','.','.','.','.','.','s',
+'s','.','s','s','s','s','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','s','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','s','s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','s','.','.','.','.','.','p','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','p','.','.','.','.','.','.','.','.','.','.','s','s','s','s','.','.','.','.','.','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','s','.','.','s','.','.','.','.','s','.','.','.','.','.','.','s',
+'s','.','.','.','.','.','.','.','s','f','f','f','f','f','f','f','s','.','.','.','.','.','.','s','s','.','.','s','.','s','.','s','s','s','.','.','.','.','.','s',
+'s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','s','.','.','s','s','s','s','s','s','s','s','s','s','s','s','s'
+];
+
+
+var canvas;
+var context;
+var world_sq_size;	//длинна стороны мира (в колличестве квадратов из которых он состоит)
+
+
+var keyUp = 0;
+var keyDown = 0;
+var keyLeft = 0;
+var keyRight = 0;
+
+function userDownAct(e)
+{
+	if(e.keyCode == 38)//стрелка вверх
+	{
+		keyUp = 1;
+	}
+	else if(e.keyCode == 40)//стрелка вниз
+	{
+		keyDown = 1;
+	}
+	else if(e.keyCode == 37)//стрелка влево
+	{
+		keyLeft = 1;
+	}
+	else if(e.keyCode == 39)//стрелка вправо
+	{
+		keyRight = 1;
+	}
+}
+function userUpAct(e)
+{
+	if(e.keyCode == 38)//стрелка вверх
+	{
+		keyUp = 0;
+	}
+	else if(e.keyCode == 40)//стрелка вниз
+	{
+		keyDown = 0;
+	}
+	else if(e.keyCode == 37)//стрелка влево
+	{
+		keyLeft = 0;
+	}
+	else if(e.keyCode == 39)//стрелка вправо
+	{
+		keyRight = 0;
+	}
+
+}
+
+
+function gameInit()
+{
+	//длинна стороны мира (в колличестве квадратов из которых он состоит)
+	world_sq_size = Math.sqrt(world.length);
+
+	//найти координаты динамичных обьектов на карте
+	for(i=0;i<world_sq_size;i++)
+	{
+		for(j=0;j<world_sq_size;j++)
+		{
+			//платформа
+			if(world[j*world_sq_size+i]=='p')
+			{
+				platforms.push
+				(
+					{x:(i*sq_size+x),y:(j*sq_size+y),dx:1,w:20,h:10}
+				);
+			}
+			//враг
+			if(world[j*world_sq_size+i]=='e')
+			{
+				enemies.push
+				(
+					{x:(i*sq_size+x),y:(j*sq_size+y),dx:1,w:10,h:10}
+				);
+			}
+			
+		}
+	}
+	//размеры врага
+	w_enemy = sq_size;
+	h_enemy = sq_size;
+}
+gameInit();
+
+
+function f()
+{
+	canvas = window.document.getElementById("a");
+	canvas.height = 400;
+	canvas.width = 400;
+	context = canvas.getContext("2d");
+
+	//фон небо
+	context.fillStyle = "#cceeff";
+	context.fillRect(0,0,canvas.width,canvas.height);
+
+	
+	//движение вправо влево
+	if(keyLeft == 1)
+	{
+		if(world[coordsToIndex(x+sq_size,y,canvas,world,world_sq_size,sq_size)]!='s')
+		x+=speed;
+	}
+	if(keyRight == 1)
+	{
+		if(world[coordsToIndex(x-sq_size/2,y,canvas,world,world_sq_size,sq_size)]!='s')
+		x-=speed;
+	}
+
+
+	//если персонаж в воздухе
+	if(world[coordsToIndex(x,y-sq_size/2,canvas,world,world_sq_size,sq_size)]!='s'  &&  world[coordsToIndex(x+sq_size/2,y-sq_size/2,canvas,world,world_sq_size,sq_size)]!='s') //второе для того чтобы не падать не дойдя до правого края
+	{
+		y-=dy;
+		dy += g;
+		if(dy > sq_size) dy = sq_size;
+	}
+	else		//если персонаж на земле
+	{
+		dy = 0;	//остановить падение
+		
+		//если немного провалились под пол
+		if(y%sq_size != 0)
+		{
+			y++;
+		}
+		//прыжок
+		if(keyUp == 1)
+		{
+			dy = -sq_size;
+			y+=speed;
+		}
+	}
+
+	//стукнулись об потолок
+	if(world[coordsToIndex(x,y+sq_size,canvas,world,world_sq_size,sq_size)]=='s' || world[coordsToIndex(x+sq_size/2,y+sq_size,canvas,world,world_sq_size,sq_size)]=='s') //второе для того чтобы не насаживаться на край
+	{
+		dy = sq_size/2;	
+		y--;
+	}
+
+
+	
+
+
+	var character_on_platform = false;//для поправки персонажа если он криво встал
+
+	for(i=0;i<platforms.length;i++)
+	{
+		//коллизия персонажа с платформой
+		if((canvas.width/2)<(platforms[i].x+platforms[i].w+x) && ((canvas.width/2)+sq_size)>(platforms[i].x+x))
+		{
+			character_on_platform = true;
+
+			if( (canvas.height/2)<(platforms[i].y+platforms[i].h+y) && ((canvas.height/2)+sq_size)>(platforms[i].y+y) )
+			{
+				if(   canvas.height/2+sq_size/2  <  platforms[i].y+platforms[i].h/2+y )//коллизия в верхней половине
+				{
+					dy = 0;
+					y++;
+				
+					x-=platforms[i].dx;	//двигать персонаж вместе с платформой по оси x
+					//вернуть обратно если мешает стена
+					if(world[coordsToIndex(x+sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s' || world[coordsToIndex(x-sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s')x+=platforms[i].dx;
+
+					if(keyUp == 1)
+					{
+						dy = -sq_size;
+						y+=speed;
+					}
+				}
+				else //коллизия в нижней половине или ровно по середине
+				{
+					dy = sq_size/2;
+					y--;
+				}
+
+				//чтобы платформа могла толкать персонажа
+				if(  ((canvas.width/2)+sq_size)>(platforms[i].x+platforms[i].w+x)  &&  ((canvas.height/2)+sq_size)>(platforms[i].y+y + 1)  )//коллизия в правой части  и  персонаж не стоит на платформе
+				{
+					x-=platforms[i].dx;	//двигать персонаж вместе с платформой по оси x
+					//вернуть обратно если мешает стена
+					if(world[coordsToIndex(x+sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s' || world[coordsToIndex(x-sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s')x+=platforms[i].dx;
+
+				}
+				if(  (canvas.width/2)<(platforms[i].x+x)   &&  ((canvas.height/2)+sq_size)>(platforms[i].y+y + 1)  )//коллизия в левой части  и  персонаж не стоит на платформе
+				{
+					x-=platforms[i].dx;	//двигать персонаж вместе с платформой по оси x
+					//вернуть обратно если мешает стена
+					if(world[coordsToIndex(x+sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s' || world[coordsToIndex(x-sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s')x+=platforms[i].dx;
+
+				}
+			}
+			else if(  (canvas.height/2)<(platforms[i].y+platforms[i].h+y) && ((canvas.height/2)+sq_size)>(platforms[i].y+y - 1)  )
+			{
+				//если персонаж стоит на платформе но не пересекается с ней
+				x-=platforms[i].dx;	//двигать персонаж вместе с платформой по оси x
+				//вернуть обратно если мешает стена
+				if(world[coordsToIndex(x+sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s' || world[coordsToIndex(x-sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='s')x+=platforms[i].dx;
+			}
+		}
+
+		//движение платформы
+		platforms[i].x += platforms[i].dx;
+
+		//коллизия правого края платформы с камнем
+		if(world[parseInt(   (platforms[i].y+platforms[i].h/2)/sq_size   )*world_sq_size + parseInt(   (platforms[i].x+platforms[i].w)/sq_size   )]=='s')
+		{
+			platforms[i].dx =- platforms[i].dx;
+		}
+
+		//коллизия левого края платформы с камнем
+		if(world[parseInt(   (platforms[i].y+platforms[i].h/2)/sq_size   )*world_sq_size + parseInt(   platforms[i].x/sq_size   )]=='s')
+		{
+			platforms[i].dx =- platforms[i].dx;
+		}
+
+	}
+	if(!character_on_platform)
+	{
+		if(x%(sq_size/2)!=0)x++;//поправка персонажа если он криво встал <- второе костыльное решение проблемы со сдвигом мира
+	}
+	for(i=0;i<platforms.length;i++)
+	{
+		//платформа
+		context.fillStyle = "#aa9977";
+		context.fillRect(platforms[i].x+x,platforms[i].y+y,platforms[i].w,platforms[i].h);
+	}
+
+
+
+	//мир (точнее его статичные обьекты)
+	for(i=0;i<world_sq_size;i++)
+	{
+		for(j=0;j<world_sq_size;j++)
+		{
+			//статичный каменный блок
+			if(world[j*world_sq_size+i]=='s')
+			{
+				context.fillStyle = "#888888";
+				context.fillRect(i*sq_size+x,j*sq_size+y,sq_size,sq_size);
+			}
+			//золотая монетка финиш игры
+			if(world[j*world_sq_size+i]=='G')
+			{
+				context.fillStyle = "#ffff00";
+				context.fillRect(i*sq_size+x,j*sq_size+y,sq_size,sq_size);
+			}
+			//коричневое говно персонажа
+			if(world[j*world_sq_size+i]=='g')
+			{
+				context.fillStyle = "#885500";
+				context.fillRect(i*sq_size+x,j*sq_size+y,sq_size,sq_size);
+			}
+			//огонь
+			if(world[j*world_sq_size+i]=='f')
+			{
+				fire(context, i*sq_size+x, j*sq_size+y, sq_size, i+""+j);
+			}
+		}
+	}
+
+
+
+
+	//враги
+	for(i=0;i<enemies.length;i++)
+	{
+		//движение врага
+		enemies[i].x += enemies[i].dx;
+
+		//коллизия правого края врага с камнем
+		if(world[parseInt(   (enemies[i].y+enemies[i].h/2)/sq_size   )*world_sq_size + parseInt(   (enemies[i].x+enemies[i].w)/sq_size   )]=='s')
+		{
+			enemies[i].dx =- enemies[i].dx;
+		}
+		//коллизия левого края врага с камнем
+		if(world[parseInt(   (enemies[i].y+enemies[i].h/2)/sq_size   )*world_sq_size + parseInt(   enemies[i].x/sq_size   )]=='s')
+		{
+			enemies[i].dx =- enemies[i].dx;
+		}	
+
+		//враг
+		//туловище-голова
+		context.fillStyle = "#000000";
+		context.fillRect(x+enemies[i].x, y+enemies[i].y,enemies[i].w,enemies[i].h);
+		//левый глаз
+		context.fillStyle = "#ffffff";
+		context.fillRect(x+enemies[i].x+2, y+enemies[i].y+2,2,2);
+		//правый глаз
+		context.fillStyle = "#ffffff";
+		context.fillRect(x+enemies[i].x+enemies[i].w-4, y+enemies[i].y+2,2,2);
+		//рот
+		context.fillStyle = "#ffffff";
+		context.fillRect(x+enemies[i].x+enemies[i].w/2-3,y+enemies[i].y+enemies[i].h-3,6,2);
+
+		//коллизия врага с персонажем (поражение)
+		if( (canvas.width/2)<(enemies[i].x+x + enemies[i].w) && ((canvas.width/2)+sq_size)>enemies[i].x+x )
+		{
+			if( (canvas.height/2)<(enemies[i].y+y + enemies[i].h) && ((canvas.height/2)+enemies[i].h)>enemies[i].y+y )
+			{ 
+				alert("You died :(");
+				x=0;
+				y=0;
+				keyUp = 0;
+				keyDown = 0;
+				keyLeft = 0;
+				keyRight = 0;
+			}
+		}
+	}
+
+
+
+
+	//персонаж попал в огонь
+	if(world[coordsToIndex(x,y,canvas,world,world_sq_size,sq_size)]=='f' || world[coordsToIndex(x+sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='f') //второе для того чтобы обнаруживать коллизию справа
+	{
+		alert("You burned :(");
+		x=0;
+		y=0;
+		keyUp = 0;
+		keyDown = 0;
+		keyLeft = 0;
+		keyRight = 0;
+	}
+
+
+
+	//персонаж
+	context.fillStyle = "#ff0000";
+	context.fillRect(canvas.width/2,canvas.height/2,sq_size,sq_size);
+
+	//победа персонаж нашёл монету
+	if(world[coordsToIndex(x,y,canvas,world,world_sq_size,sq_size)]=='G' || world[coordsToIndex(x+sq_size/2,y,canvas,world,world_sq_size,sq_size)]=='G') //второе для того чтобы обнаруживать коллизию справа
+	{
+		alert("You Win! :)");
+		x=0;
+		y=0;
+		keyUp = 0;
+		keyDown = 0;
+		keyLeft = 0;
+		keyRight = 0;
+	}
+
+
+
+}
+
+//перевести координаты мира в индекс массива мира
+function coordsToIndex(x,y,canvas,world,world_sq_size,sq_size)
+{
+	var ind = parseInt( parseInt((canvas.width/2+sq_size/2-y)/sq_size)*world_sq_size+parseInt((canvas.height/2+sq_size/2-x)/sq_size) );
+	if(ind<0)ind=0;
+	if(ind>world.length)ind=world.length-1;
+	return ind;
+}
+
+//анимация огня
+function fire(context, x, y, h, u) //(контекст, координата x, координата y, высота/ширина, уникальный идентификатор конкретного огня для непохожести огней друг на друга)
+{
+	y+=h;
+	eval
+	(""+
+		"if ( typeof (fire.dy"+u+") == 'undefined' ) fire.dy"+u+" = [rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5),rand(1,5)];"+
+		"for(k=0;k<5;k++){"+
+			"context.fillStyle = '#ff"+rand(0,5)+""+rand(0,5)+"00';"+
+			"context.fillRect(x+k, y+fire.dy"+u+"[k],h+fire.dy"+u+"[k],h+fire.dy"+u+"[k]);"+
+			"fire.dy"+u+"[k]--;"+
+			"if(Math.random()>0.5)fire.dy"+u+"[k]--;"+
+			"if(fire.dy"+u+"[k]<-h)fire.dy"+u+"[k]=0;"+
+		"}"+
+	"");
+}
+
+
+
+
+//рандом включая верхнюю и нижнюю границы
+function rand(min,max)
+{
+	return min + Math.floor(Math.random()*(max+1));
+}
+
+
+
+
+
+
+
+
+
+
+
+window.onkeydown = userDownAct;
+window.onkeyup = userUpAct;
+
+function gameLoop()
+{
+	window.setTimeout(gameLoop,50);
+	f();
+}
+
+gameLoop();
+
+
+
+
+</script>
+
+<canvas id="a">not working</canvas>
+</body>
+</html>
