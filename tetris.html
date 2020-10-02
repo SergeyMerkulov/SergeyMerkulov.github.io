@@ -32,7 +32,7 @@
 //рандом включая верхнюю и нижнюю границы
 function rand(min,max)
 {
-	return min + Math.floor(Math.random()*(max+1));
+	return min + Math.floor(Math.random()*((max+1)-min));
 }
 
 //уровень
@@ -60,7 +60,6 @@ var cur_y = 0;
 //номер угола поворота фигуры
 var ang = 0;
 
-
 var FIG_Z = 0;
 // HH
 //  HH
@@ -76,8 +75,6 @@ figZ_x = [0,1,1,2, 1,0,1,0, 0,1,1,2, 1,0,1,0];
 figZ_y = [0,0,1,1, 0,1,1,2, 0,0,1,1, 0,1,1,2];
 
 
-
-
 var FIG_Z2 = 1;
 //  HH
 // HH
@@ -89,8 +86,6 @@ var figZ2_x = new Array();
 var figZ2_y = new Array();
 figZ2_x = [1,2,0,1, 0,0,1,1, 1,2,0,1, 0,0,1,1];
 figZ2_y = [0,0,1,1, 0,1,1,2, 0,0,1,1, 0,1,1,2];
-
-
 
 
 var FIG_L = 2;
@@ -114,7 +109,6 @@ figL_x = [0,1,2,0, 0,0,0,1, 2,0,1,2, 0,1,1,1];
 figL_y = [0,0,0,1, 0,1,2,2, 0,1,1,1, 0,0,1,2];
 
 
-
 var FIG_L2 = 3;
 // H
 // HHH
@@ -136,8 +130,6 @@ figL2_x = [0,0,1,2, 0,1,0,0, 0,1,2,2, 1,1,1,0];
 figL2_y = [0,1,1,1, 0,0,1,2, 0,0,0,1, 0,1,2,2];
 
 
-
-
 var FIG_I = 4;
 // HHHH
 //-------------
@@ -150,8 +142,6 @@ var figI_x = new Array();
 var figI_y = new Array();
 figI_x = [0,1,2,3, 0,0,0,0, 0,1,2,3, 0,0,0,0];
 figI_y = [0,0,0,0, 0,1,2,3, 0,0,0,0, 0,1,2,3];
-
-
 
 
 var FIG_T = 5;
@@ -173,7 +163,6 @@ var figT_x = new Array();
 var figT_y = new Array();
 figT_x = [1,0,1,2, 0,0,1,0, 0,1,2,1, 1,0,1,1];
 figT_y = [0,1,1,1, 0,1,1,2, 0,0,0,1, 0,1,1,2];
-
 
 
 //фигура - куб
@@ -546,7 +535,6 @@ function newTurn()
 		}
 	}
 		
-
 	//проверка коллизии справа (в настоящем)
 	if(  fig_x[0]>=W || fig_x[1]>=W || fig_x[2]>=W || fig_x[3]>=W || area[fig_y[0]*W+fig_x[0]]==1 || area[fig_y[1]*W+fig_x[1]]==1 || area[fig_y[2]*W+fig_x[2]]==1 || area[fig_y[3]*W+fig_x[3]]==1  )
 	{
@@ -574,7 +562,6 @@ function newTurn()
 	}
 }
 
-
 var is_pause = false;
 
 function pauseRun()
@@ -586,8 +573,6 @@ function pauseRun()
 		document.getElementById("PauseRun").innerHTML = "Pause";	
 	}
 }
-
-
 
 function userDownAct(e)
 {
