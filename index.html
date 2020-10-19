@@ -1,84 +1,175 @@
 <!DOCTYPE html> 									<!-- HTML5 -->
 <html>
  <head>
-  <!-- <meta charset="utf-8"> -->							<!-- кодировка для корректного отображения кириллицы (не работает) -->
-  <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->	<!-- кодировка для корректного отображения кириллицы (не работает) -->
-  <title>games</title>							<!-- очень важно для поисковых систем -->
-  <meta name="description" content="free online games">
-  <meta name="keywords" content="game, games, play, free, online">
+  <title>Portfolio of Sergey Merkulov</title>
+  <meta name="description" content="portfolio of Sergey Merkulov">
+  <meta name="keywords" content="portfolio, programmer">
   <meta name="author" content="Sergey Merkulov">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">		<!-- настройка области просмотра, чтобы страница выглядела хорошо на всех устройствах (пк, смартфон, планшет и т.д.) -->
-  <meta name="robots" content="index, follow">						<!-- указать поисковому роботу что надо индексировать данную страницу и слеовать по ней. Если этого не надо то используются "noindex, nofollow" -->
-  <!-- <meta http-equiv="refresh" content="30"> -->					<!-- на случай если надо чтобы данная страница самообновлялась каждые 30 секунд -->
-  <!-- <meta http-equiv="refresh" content="5; URL=http://www.other_page.ru">		<!-- на случай если надо чтобы данная страница перешла на другую страницу через 5 секунд после загрузки -->
-  <link type="text/css" rel="stylesheet" href="style.css" />
+  <meta name="robots" content="index, follow">						<!-- указать поисковому роботу что надо индексировать данную страницу и следовать по ней. Если этого не надо то используются "noindex, nofollow" -->
+		
+  <link type="text/css" rel="stylesheet" href="styles/main.css" />
  </head>
  <body>
 	<header>
-		<h1>Free Online Games</h1>							<!-- тег h1 д.б. один единственный на странице и он важен для поисковых систем, в нем д.б. ключевые слова или ключевая фраза -->
-		<div class="title">
-			<span class="slogan">Select your favorite game and play it!</span>
-			<span class="phone">freedms@yandex.ru</span>
-		</div>
-		<details>
-			<summary>Select a game</summary> 
-			<nav>
-				<ul>
-				<li><a href="tetris.html">tetris</a></li>
-				<li><a href="The Adventures of the Red Square.html">The Adventures of the Red Square</a></li>
-				<li><a href="game_of_life.html">game of life</a></li>
-				<li><a href="tetris_for_idiots.html">simple tetris</a></li>
-				<li><a href="calc_of_profit1.html">calc_of_profit1</a></li>
-				</ul>
-			</nav>
-		</details>
+		<span class="title">Portfolio of Sergey Merkulov</span>
+		<span class="email">contact email: freedms@yandex.ru</span>
 	</header>
-	<article>
-		The list of free games:
-		<br>
-		<picture>
-			<a href="tetris.html">
- 			<img src="images/tetris.gif" width="256" height="256">
-			</a>
-		</picture>
-		<picture>
-			<a href="The Adventures of the Red Square.html">
- 			<img src="images/The Adventures of the Red Square.gif" width="256" height="256">
-			</a>
-		</picture>
-		<picture>
-			<a href="game_of_life.html">
- 			<img src="images/game_of_life.gif" width="256" height="256">
-			</a>
-		</picture>
-		<picture>
-			<a href="tetris_for_idiots.html">
- 			<img src="images/tetris_for_idiots.gif" width="256" height="256">
-			</a>
-		</picture>
-	</article>
-	<!--
-	<article>
-		<form name="helloForm">
-			<input type="button" value="send hello" onclick="sendHello();">
-		</form>
-	</article>
-	-->
+	<nav>
+		<a href="games.html">
+			<svg id="games_button" version="1.1" baseProfile="full" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+				
+				<path id="character" stroke="black" fill="#999922" stroke-width="1" stroke-linejoin="round"; d='M 30,40 50,40  50,45 55,45 55,50 50,50    50,65   48,65 48,70 44,70 44,65   36,65 36,70 32,70 32,65    30,65 Z' />
+				<path id="eye" stroke="black" fill="#000000" stroke-width="1" stroke-linejoin="round"; d='M 43,44 47,44 47,48 43,48 Z' />
+				<path id="box" stroke="black" fill="#993300" stroke-width="1" stroke-linejoin="round"; d='M 60,60 73,60 73,73 60,73 Z' />
+				<text id="description" x="10" y="25" font-family="fantasy" fill="#660000" font-size="20">GAMES</text>
+				<path id="games_button_background" fill-opacity="0.25" stroke="black" fill="#3388ff" stroke-width="3" stroke-linejoin="round"; d='M 0,0 80,0 80,80 0,80 Z' />
+
+				<animate xlink:href="#games_button_background" 
+					attributeName="fill" 
+					from="3388ff"
+					to="#ffffff"
+					dur="0.3s" 
+					begin="mouseover"
+					fill="freeze" />
+				<animate xlink:href="#games_button_background" 
+					attributeName="fill" 
+					from="ffffff"
+					to="#3388ff"
+					dur="0.3s" 
+					begin="mouseout"
+					fill="freeze" />
+				<animate xlink:href="#character" 
+					attributeName="d" 
+					values=
+						"
+						M 30,40 50,40  50,45 55,45 55,50 50,50    50,65   48,65 48,70 44,70 44,65   36,65 36,70 32,70 32,65    30,65 Z;
+						M 30,40 50,40  50,45 55,45 55,50 50,50    50,65   44,65 44,70 41,70 41,65   40,65 40,70 37,70 37,65    30,65 Z; 
+						M 30,40 50,40  50,45 55,45 55,50 50,50    50,65   48,65 48,70 44,70 44,65   36,65 36,70 32,70 32,65    30,65 Z;
+						M 30,40 50,40  50,45 55,45 55,50 50,50    50,65   44,65 44,70 41,70 41,65   40,65 40,70 37,70 37,65    30,65 Z;
+						M 30,30 50,30  50,35 55,35 55,40 50,40    50,55   44,55 44,60 41,60 41,55   40,55 40,60 37,60 37,55    30,55 Z;
+						M 30,40 50,40  50,45 55,45 55,50 50,50    50,65   44,65 44,70 41,70 41,65   40,65 40,70 37,70 37,65    30,65 Z
+						"
+					dur="3s" 
+					begin="games_button.mouseover"
+					end="games_button.mouseout" 
+					repeatCount="indefinite" />
+				<animate xlink:href="#eye" 
+					attributeName="d" 
+					values=
+						"
+						M 43,44 47,44 47,48 43,48 Z;
+						M 43,44 47,44 47,45 43,45 Z; 
+						M 43,44 47,44 47,48 43,48 Z;
+						M 43,44 47,44 47,48 43,48 Z;
+						M 43,34 47,34 47,38 43,38 Z;
+						M 43,44 47,44 47,48 43,48 Z
+						"
+					dur="3s" 
+					begin="games_button.mouseover"
+					end="games_button.mouseout"
+					repeatCount="indefinite" />
+
+
+				<animate xlink:href="#description" 
+					attributeName="fill" 
+					values="red;black;red"
+					dur="1.2s" 
+					begin="games_button.mouseover"
+					end="games_button.mouseout"
+					repeatCount="indefinite" />
+			</svg>
+		</a>
+		<a href="cartoon.html">
+			<svg id="cartoons_button" version="1.1" baseProfile="full" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+				
+				<text id="cartoons_button_description" x="3" y="22" font-family="fantasy" fill="#660000" font-size="17">CARTOONS</text>
+				<path id="cartoons_play" stroke="black" fill="#ff0000" stroke-width="2" stroke-linejoin="round"; d='M 20,30 60,50 20,70 Z' />
+				<path id="cartoons_button_background" fill-opacity="0.25" stroke="black" fill="#3388ff" stroke-width="3" stroke-linejoin="round"; d='M 0,0 80,0 80,80 0,80 Z' />
+
+				<animate xlink:href="#cartoons_button_background" 
+					attributeName="fill" 
+					from="3388ff"
+					to="#ffffff"
+					dur="0.3s" 
+					begin="cartoons_button.mouseover"
+					fill="freeze" />
+				<animate xlink:href="#cartoons_button_background" 
+					attributeName="fill" 
+					from="ffffff"
+					to="#3388ff"
+					dur="0.3s" 
+					begin="cartoons_button.mouseout"
+					fill="freeze" />
+				<animate xlink:href="#cartoons_button_description" 
+					attributeName="fill" 
+					values="red;black;red"
+					dur="1.2s" 
+					begin="cartoons_button.mouseover"
+					end="cartoons_button.mouseout"
+					repeatCount="indefinite" />
+				<animate xlink:href="#cartoons_play" 
+					attributeName="d" 
+					values=
+						"
+						M 20,30 60,50 20,70 Z;
+						M 30,30 50,50 30,70 Z; 
+						M 20,30 60,50 20,70 Z;
+						"
+					dur="3s" 
+					begin="cartoons_button.mouseover"
+					end="cartoons_button.mouseout"
+					repeatCount="indefinite" />
+			</svg>
+		<a href="http://www.shutterstock.com/g/Sergey+Merkulov?rid=3851207">
+			<svg id="illustrations_button" version="1.1" baseProfile="full" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+				
+				<text id="illustrations_button_description" x="3" y="22" font-family="fantasy" fill="#660000" font-size="18">PICTURES</text>
+				<path id='fig1' style='stroke-width:1px; stroke-linejoin:round; stroke:#000000; fill:#00ff08;' d='M  35,64  15,62  9,67  19,71  35,67  38,72  43,71  41,64  51,65  56,59  45,59  40,62  32,46  24,45  Z' />
+				<path id='fig2' style='stroke-width:1px; stroke-linejoin:round; stroke:#000000; fill:#f40101;' d='M  25,27  20,24  14,25  12,29  12,33  23,43  9,45  7,47  7,52  8,56  14,57  24,49  19,62  20,65  24,67  29,67  32,64  30,50  39,59  43,58  47,55  48,49  46,45  33,43  45,35  45,31  44,27  38,25  35,26  28,40  Z' />
+				<path id='fig3' style='stroke-width:1px; stroke-linejoin:round; stroke:#000000; fill:#fbff00;' d='M  24,49  30,49  33,43  27,40  23,43  Z' />
+
+				<path id="illustrations_button_background" fill-opacity="0.25" stroke="black" fill="#3388ff" stroke-width="3" stroke-linejoin="round"; d='M 0,0 80,0 80,80 0,80 Z' />
+
+				<animate xlink:href="#illustrations_button_background" 
+					attributeName="fill" 
+					from="3388ff"
+					to="#ffffff"
+					dur="0.3s" 
+					begin="illustrations_button.mouseover"
+					fill="freeze" />
+				<animate xlink:href="#illustrations_button_background" 
+					attributeName="fill" 
+					from="ffffff"
+					to="#3388ff"
+					dur="0.3s" 
+					begin="illustrations_button.mouseout"
+					fill="freeze" />
+				<animate xlink:href="#illustrations_button_description" 
+					attributeName="fill" 
+					values="red;black;red"
+					dur="1.2s" 
+					begin="illustrations_button_background.mouseover"
+					end="illustrations_button_background.mouseout"
+					repeatCount="indefinite" />
+				<animateTransform xlink:href='#fig2' attributeName='transform' type='rotate' values='0,28,43;360,28,43' keyTimes='0; 1' dur='3s' repeatCount='indefinite' begin='illustrations_button.mouseover' end='illustrations_button.mouseout'  />
+				<animateTransform xlink:href='#fig3' attributeName='transform' type='rotate' values='0,28,43;360,28,43' keyTimes='0; 1' dur='3s' repeatCount='indefinite' begin='illustrations_button.mouseover' end='illustrations_button.mouseout'  />
+			</svg>
+		</a>
+	</nav>
+	<section>
+		<article>
+			<div class="article_header">About me</div>
+			Hi! My name is Sergey Merkulov. I make some web projects from time to time. Some of them you can find in this web site.
+			I am not a professional programmer but as you can see I can do something of this. I try to find a job which suits me. Here is my web portfolio.
+			If you interested of my works you coud contact to me by email: freedms@yandex.ru
+		</article>
+	</section>
 	<footer>
-		Copyright 2019 - SergeyMerkulov.github.io
+		Copyright 2020 - SergeyMerkulov.github.io
 	</footer>
 	<!-- загрузка javascript скриптов должна осуществляться после загрузки остальной основной части сайта. Это важно для поисковых систем и пользователей! -->
  
-
-<script type="text/javascript" >
-
-function sendHello(){
-fetch('https://cloud-api.yandex.net/v1/disk/pic&Authorization=AgAAAAAH7VoxAAZEyKfAoPUsSEx5ncCIfOahuZc')
-.then(response => response.text())
-.then(response => alert(response));
-}
-</script>
-
 
 
 

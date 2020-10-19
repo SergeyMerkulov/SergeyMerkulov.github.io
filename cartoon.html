@@ -1,0 +1,53 @@
+<html>
+<head>
+<script src="scripts/fragment1_2.js"></script>
+<script src="scripts/fragment3_4.js"></script>
+<script src="scripts/fragment5_7.js"></script>
+<script src="scripts/fragment8_9.js"></script>
+<script src="scripts/fragment10_11.js"></script>
+<script src="scripts/fragment12_13.js"></script>
+<style>
+#start_container
+{
+text-align: center;
+
+}
+#start_container button
+{
+width: 50%;
+height: 40%;
+font-weight: 900;
+font-size: xxx-large;
+box-shadow:
+   inset 0 10px 10px rgba(255,255,255,.5),
+   inset 0 -10px 10px rgba(0,0,0,.5),
+   0 10px 30px rgba(0,0,0,.5);
+text-shadow: 0 2px 2px rgba(0,0,0,.9), 0 2px 2px rgba(255,255,255,.9);
+}
+</style>
+</head>
+
+<body >
+<div id="start_container">
+<button onclick="playMovie();">Play &#9658;</button>
+</div>
+<div id="movie">
+</div>
+<script>
+function playMovie()
+{
+	document.getElementById("start_container").remove(); 
+	screenElement = "movie";
+	setTimeout(fragment1_2, 1);
+	setTimeout(fragment3_4, 4000);
+	setTimeout(fragment5_7, 8000);
+	setTimeout(fragment8_9, 12000);
+	setTimeout(fragment10_11, 16000);
+	setTimeout(fragment12_13, 20000);
+}
+
+</script>
+
+
+</body>
+</html>

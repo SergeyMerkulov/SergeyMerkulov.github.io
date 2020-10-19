@@ -1,0 +1,84 @@
+header,footer,article,nav
+{
+	display: block;
+}
+
+.title .slogan
+{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.title .phone
+{
+	float: right;
+}
+
+.title
+{
+	padding: 10px;		/*отступ текста по всем краям внутри рамки*/
+	margin: 10px;		/*отступ текста по всем краям снаружи рамки*/
+}
+
+header
+{
+	padding: 10px;		/*отступ текста по всем краям внутри рамки*/
+	margin: 10px;		/*отступ текста по всем краям снаружи рамки*/
+}
+
+header h1
+{
+	font-family: fantasy;
+}
+
+header details
+{
+	padding: 5px;		/*отступ текста по всем краям внутри рамки*/
+	margin: 5px;		/*отступ текста по всем краям снаружи рамки*/
+	border: 1px solid #000000;
+}
+
+nav
+{
+	padding: 5px;		/*отступ текста по всем краям внутри рамки*/
+	margin: 5px;		/*отступ текста по всем краям снаружи рамки*/
+}
+
+nav ul li
+{
+	display:inline;
+}
+
+nav ul li a,
+nav ul li a:visited
+{
+	display:block;
+	margin:6px;
+	padding:6px;
+}
+
+nav ul li a:hover
+{
+	margin:5px;
+	padding:5px;
+	border: 1px solid #000000;
+}
+
+article
+{
+	padding: 15px;		/*отступ текста по всем краям внутри рамки*/
+	margin: 15px;		/*отступ текста по всем краям снаружи рамки*/
+	text-align:justify;	/*выравнивание под прямоугольник в котором расположен текст*/
+}
+article a
+{ 
+	text-decoration: none; /* Отменяем подчеркивание у ссылки */
+}
+
+footer
+{
+	padding: 10px;		/*отступ текста по всем краям внутри рамки*/
+	margin: 10px;		/*отступ текста по всем краям снаружи рамки*/
+	text-align: center;	/*расположение текста посередине*/
+	font-size: 0.8em;
+}
