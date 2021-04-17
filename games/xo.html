@@ -1,0 +1,198 @@
+<html>
+<head>
+	<style>
+		body {
+			display: flex;
+			flex-flow: column wrap;
+			justify-content: top;
+			align-items: center;
+		}
+		main {
+			display: grid;
+			grid-template: 	"a1 b1 c1" 50px
+					"a2 b2 c2" 50px
+					"a3 b3 c3" 50px
+					/50px 50px 50px;
+		}
+		#a1 {
+			grid-area: a1;
+			border-bottom: 2px solid black;
+			border-right: 2px solid black;
+		}
+		#b1 {
+			grid-area: b1;
+			border-bottom: 2px solid black;
+			border-right: 2px solid black;
+			border-left: 2px solid black;
+		}
+		#c1 {
+			grid-area: c1;
+			border-bottom: 2px solid black;
+			border-left: 2px solid black;
+		}
+		#a2 {
+			grid-area: a2;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+			border-right: 2px solid black;
+		}
+		#b2 {
+			grid-area: b2;
+			border: 2px solid black;
+		}
+		#c2 {
+			grid-area: c2;
+			border-top: 2px solid black;
+			border-bottom: 2px solid black;
+			border-left: 2px solid black;
+		}
+		#a3 {
+			grid-area: a3;
+			border-top: 2px solid black;
+			border-right: 2px solid black;
+		}
+		#b3 {
+			grid-area: b3;
+			border-top: 2px solid black;
+			border-left: 2px solid black;
+			border-right: 2px solid black;
+		}
+		#c3 {
+			grid-area: c3;
+			border-top: 2px solid black;
+			border-left: 2px solid black;
+		}
+		.cell {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 40px;
+			font-family: arial;
+			cursor: pointer;
+		}
+		footer {
+			font-size: 20px;
+			font-family: arial;
+			text-align: center;
+			padding: 10px;
+		}
+		.player {
+			font-size: 30px;
+			font-family: arial;
+			font-weight: 700;
+		}
+		header {
+			font-size: 45px;
+			font-family: arial;
+			font-weight: 700;
+			margin: 30px;
+		}
+		button {
+			background-color: green;
+			padding: 5px 30px 5px 30px;
+			margin: 12px;
+			color: white;
+			font-family: Arial;
+			font-weight: 600;
+			border-radius: 5px;
+		}		
+	</style>
+</head>
+<body>
+	<header>
+		The x0 game
+	</header>
+	<main>
+		<div id="a1" class="cell"></div><div id="b1" class="cell"></div><div id="c1" class="cell"></div>
+		<div id="a2" class="cell"></div><div id="b2" class="cell"></div><div id="c2" class="cell"></div>
+		<div id="a3" class="cell"></div><div id="b3" class="cell"></div><div id="c3" class="cell"></div>
+	</main>
+	<footer>
+		current player is <span class="player">x</span>
+	</footer>
+	<script>
+		var currentPlayer = 'x';
+		var winer = '';
+		var CELL_SIZE = 50;
+		var HALF_CELL = parseInt(CELL_SIZE/2);
+		var RESTART_BUTTON = '<button onclick="history.go(0)">restart</button>';
+		
+		var a1 = document.getElementById('a1');
+		var b1 = document.getElementById('b1');
+		var c1 = document.getElementById('c1');
+		var a2 = document.getElementById('a2');
+		var b2 = document.getElementById('b2');
+		var c2 = document.getElementById('c2');
+		var a3 = document.getElementById('a3');
+		var b3 = document.getElementById('b3');
+		var c3 = document.getElementById('c3');
+
+		var fieldCoords = {
+			top: a1.getBoundingClientRect().top + pageYOffset, 
+			left: a1.getBoundingClientRect().left + pageXOffset, 
+		};
+
+		var field = [a1,b1,c1,a2,b2,c2,a3,b3,c3];
+		var SIZE = 3;
+		var moves = 0;
+		var MAX_MOVES = 8;
+
+		function cellClick(cell) {
+			moves ++;
+			if(cell.innerHTML == '') {
+				if (currentPlayer == 'x') {
+					cell.innerHTML = 'x';
+					currentPlayer = '0';
+				}
+				else {
+					cell.innerHTML = '0';
+					currentPlayer = 'x';
+				}
+			}
+			document.querySelector('footer').innerHTML = 'current player is <span class="player">'+currentPlayer+'</span>';
+			for(var i=0;i<SIZE*SIZE;i+=SIZE) {
+				if(field[i].innerHTML == field[i+1].innerHTML && field[i+1].innerHTML == field[i+2].innerHTML && field[i].innerHTML != '') {
+					winer = field[i].innerHTML;
+					field[i].style.color = field[i+1].style.color = field[i+2].style.color = 'red';
+					crossing(HALF_CELL,HALF_CELL+CELL_SIZE*i/SIZE,CELL_SIZE*SIZE-HALF_CELL,HALF_CELL+CELL_SIZE*i/SIZE);
+					return winer;
+				}
+			}
+			for(var i=0;i<SIZE;i++) {
+				if(field[i].innerHTML == field[i+SIZE].innerHTML && field[i+SIZE].innerHTML == field[i+SIZE+SIZE].innerHTML && field[i].innerHTML != '') {
+					winer = field[i].innerHTML;
+					field[i].style.color = field[i+SIZE].style.color = field[i+SIZE+SIZE].style.color = 'red';
+					crossing(HALF_CELL+CELL_SIZE*i,HALF_CELL,HALF_CELL+CELL_SIZE*i,CELL_SIZE*SIZE-HALF_CELL);
+					return winer;
+				}
+			}
+			if(field[0].innerHTML == field[4].innerHTML && field[4].innerHTML == field[8].innerHTML && field[0].innerHTML != '') {
+				winer = field[0].innerHTML;
+				field[0].style.color = field[4].style.color = field[8].style.color = 'red';
+				crossing(HALF_CELL,HALF_CELL,CELL_SIZE*SIZE-HALF_CELL,CELL_SIZE*SIZE-HALF_CELL);
+				return winer;
+			}
+			if(field[2].innerHTML == field[4].innerHTML && field[4].innerHTML == field[6].innerHTML && field[2].innerHTML != '') {
+				winer = field[2].innerHTML;
+				field[2].style.color = field[4].style.color = field[6].style.color = 'red';
+				crossing(CELL_SIZE*SIZE-HALF_CELL,HALF_CELL,HALF_CELL,CELL_SIZE*SIZE-HALF_CELL);
+				return winer;
+			}
+			if(moves > MAX_MOVES) document.querySelector('footer').innerHTML = '<span class="player">draw</span><br>'+RESTART_BUTTON;
+		}
+
+		function crossing(x1,y1,x2,y2) {
+			var svg = document.createElement('svg');
+			svg.style = 'position:absolute;top:'+fieldCoords.top+'px;left:'+fieldCoords.left+'px';
+			document.body.append(svg);
+			svg.innerHTML = '<svg version="1.1" baseProfile="full" width="150px" height="150px" xmlns="http://www.w3.org/2000/svg">  <path style="stroke-width:5px; stroke-linejoin:round; stroke:#0000ff; fill:#ffffff; " d="M '+x1+','+y1+' '+x2+','+y2+' Z" /> </svg>';
+			var winner = currentPlayer == 'x' ? '0' : 'x';
+			document.querySelector('footer').innerHTML = '<span class="player">' + winner + '</span> is winner!<br>'+RESTART_BUTTON;
+		}
+		
+		for(var i=0; i<field.length; i++) {
+			eval('field['+i+'].addEventListener("click",()=>cellClick(field['+i+']))');
+		}
+	</script>
+</body>
+</html>

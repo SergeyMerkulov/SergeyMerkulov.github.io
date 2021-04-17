@@ -9,18 +9,15 @@
 	<meta name="robots" content="index, follow">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">	<!-- отключить масштабирование для удобства на ос андроид -->
 	<style>
-		.buttons
-		{
+		.buttons {
 			width: 100px;
 			height: 35px;
 		}
-		.buttonTurn
-		{
+		.buttonTurn {
 			width: 200px;
 			height: 30px;
 		}
-		#PauseRun
-		{
+		#PauseRun {
 			width: 200px;
 			height: 30px;
 		}
@@ -316,7 +313,7 @@ function deleteLine()
 		{
 			
 			level++;
-			document.getElementById("Level").innerHTML = "cleans "+level;
+			document.getElementById("Level").innerHTML = "score "+level;
 
 			//сохранить уровень в рекордах если он больше предыдущего рекорда
 			if( localStorage.getItem('record') < level )
@@ -364,7 +361,7 @@ function loop()
 			alert("You lose");
 			animDelay = 500;
 			level = 0;
-			document.getElementById("Level").innerHTML = "cleans "+level;
+			document.getElementById("Level").innerHTML = "score "+level;
 			init();
 		}
 
@@ -633,7 +630,7 @@ gameLoop();
 
 
 </script>
-<span id="Level">cleans 0</span>
+<span id="Level">score 0</span>
 <span id="record">(record 0)</span>
 <br>
 <canvas id="a" >not working</canvas>
