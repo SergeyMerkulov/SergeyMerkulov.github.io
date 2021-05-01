@@ -1,7 +1,18 @@
 <html>
 <head>
 </head>
-<body onload="initRandom();">
+<body>
+<canvas id="area">not working</canvas>
+<br>
+<button onclick="keyRun=true;">run</button>
+<button onclick="keyRun=false;">stop</button>
+<button onclick="initRandom();">random init</button>
+<button onclick="f();">next steep</button>
+<br>
+<button onclick="initClear();">clear</button>
+<button onclick="initPlaner();">planer</button>
+<button onclick="initGliderGun();">gun</button>
+<button onclick="screenshot();">screenshot</button>
 <script>
 
 //ширина и высота поля в кубиках
@@ -25,27 +36,17 @@ var HUR_FOR_BORN = 3;
 var HUR_FOR_LIFE1 = 3;
 var HUR_FOR_LIFE2 = 4;
 
-
-
-
 var canvas;
 var context;
 
-
-
-
-
 function initRandom()
 {
-
-
-canvas = window.document.getElementById("a");
+	canvas = window.document.getElementById("area");
 	canvas.height = 400;
 	canvas.width = 400;
 	context = canvas.getContext("2d");
 
-canvas.addEventListener('mousedown', mouseDown, false);
-
+	canvas.addEventListener('mousedown', mouseDown, false);
 
 	//инициализация
 	for(i=0;i<gen1.length;i++)
@@ -60,7 +61,6 @@ canvas.addEventListener('mousedown', mouseDown, false);
 			gen1[i] = 0;
 		}
 	}
-	
 
 	//отрисовка поколения
 	for(y=0;y<H;y++)
@@ -81,12 +81,9 @@ canvas.addEventListener('mousedown', mouseDown, false);
 	}
 }
 
-
-
-
 function initPlaner()
 {
-	canvas = window.document.getElementById("a");
+	canvas = window.document.getElementById("area");
 	canvas.height = 400;
 	canvas.width = 400;
 	context = canvas.getContext("2d");
@@ -123,11 +120,9 @@ function initPlaner()
 	}
 }
 
-
-
 function initGliderGun()
 {
-	canvas = window.document.getElementById("a");
+	canvas = window.document.getElementById("area");
 	canvas.height = 400;
 	canvas.width = 400;
 	context = canvas.getContext("2d");
@@ -137,8 +132,6 @@ function initGliderGun()
 	{
 		gen1[i] = 0;
 	}
-
-
 	
 	gen1[2+W*6] = 1;
 	gen1[3+W*6] = 1;
@@ -190,7 +183,6 @@ function initGliderGun()
 	gen1[37+W*4] = 1;
 	gen1[37+W*5] = 1;
 
-
 	//отрисовка поколения
 	for(y=0;y<H;y++)
 	{
@@ -210,13 +202,9 @@ function initGliderGun()
 	}
 }
 
-
-
-
-
 function initClear()
 {
-	canvas = window.document.getElementById("a");
+	canvas = window.document.getElementById("area");
 	canvas.height = 400;
 	canvas.width = 400;
 	context = canvas.getContext("2d");
@@ -246,12 +234,9 @@ function initClear()
 	}
 }
 
-
-
-
 function f()
 {
-	canvas = window.document.getElementById("a");
+	canvas = window.document.getElementById("area");
 	canvas.height = 400;
 	canvas.width = 400;
 	context = canvas.getContext("2d");
@@ -338,9 +323,7 @@ function rand(min,max)
 	return min + Math.floor(Math.random()*(max+1));
 }
 
-
 var keyRun = true;
-
 
 function gameLoop()
 {
@@ -350,10 +333,9 @@ function gameLoop()
 
 gameLoop();
 
-
 function mouseDown(e)
 {
-	var rect = window.document.getElementById("a").getBoundingClientRect();
+	var rect = window.document.getElementById("area").getBoundingClientRect();
 	var x_ = e.clientX - rect.left;
 	var y_ = e.clientY - rect.top;
 	//alert("x="+x+" y="+y);
@@ -369,8 +351,7 @@ function mouseDown(e)
 		gen1[y_ind*W+x_ind] = 0;
 	}
 
-
-	var context = window.document.getElementById("a").getContext("2d");
+	var context = window.document.getElementById("area").getContext("2d");
 
 	//отрисовка поколения
 	for(y=0;y<H;y++)
@@ -389,20 +370,18 @@ function mouseDown(e)
 			}
 		}
 	}
-
 }
-
-
+function debugBase64(base64URL)
+{
+    	var win = window.open();
+    	win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+}
+function screenshot()
+{
+	canvas = window.document.getElementById('area');
+	debugBase64(canvas.toDataURL('image/gif'));
+}
+document.querySelector('body').addEventListener('load',initRandom());
 </script>
-<canvas id="a" onmousedown="chGen(e);">not working</canvas>
-<br>
-<button onclick="keyRun=true;">run</button>
-<button onclick="keyRun=false;">stop</button>
-<button onclick="initRandom();">random init</button>
-<button onclick="f();">next steep</button>
-<br>
-<button onclick="initClear();">clear</button>
-<button onclick="initPlaner();">planer</button>
-<button onclick="initGliderGun();">gun</button>
 </body>
 </html>

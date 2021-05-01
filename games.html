@@ -8,10 +8,13 @@
   <meta name="keywords" content="game, games, play, free, online">
   <meta name="author" content="Sergey Merkulov">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">		<!-- настройка области просмотра, чтобы страница выглядела хорошо на всех устройствах (пк, смартфон, планшет и т.д.) -->
-  <meta name="robots" content="index, follow">						<!-- указать поисковому роботу что надо индексировать данную страницу и слеовать по ней. Если этого не надо то используются "noindex, nofollow" -->
+  <meta name="robots" content="index, follow">						<!-- указать поисковому роботу что надо индексировать данную страницу и следовать по ней. Если этого не надо то используются "noindex, nofollow" -->
   <!-- <meta http-equiv="refresh" content="30"> -->					<!-- на случай если надо чтобы данная страница самообновлялась каждые 30 секунд -->
   <!-- <meta http-equiv="refresh" content="5; URL=http://www.other_page.ru">		<!-- на случай если надо чтобы данная страница перешла на другую страницу через 5 секунд после загрузки -->
   <link type="text/css" rel="stylesheet" href="styles/game_style.css" />
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
  </head>
  <body>
 	<header>
@@ -27,51 +30,89 @@
 				<li><a href="games/tetris.html">tetris</a></li>
 				<li><a href="games/The Adventures of the Red Square.html">The Adventures of the Red Square</a></li>
 				<li><a href="games/game_of_life.html">game of life</a></li>
-				<li><a href="games/tetris_for_idiots.html">simple tetris</a></li>
 				<li><a href="games/xo.html">xo</a></li>
-				<!--<li><a href="calc_of_profit1.html">calc_of_profit1</a></li>-->
 				</ul>
 			</nav>
 		</details>
 	</header>
-	<article>
-		The list of free games:
-		<br>
-		<picture>
-			<a href="games/tetris.html">
- 			<img src="images/tetris.gif" width="128" height="128">
-			</a>
-		</picture>
-		<picture>
-			<a href="games/The Adventures of the Red Square.html">
- 			<img src="images/The Adventures of the Red Square.gif" width="128" height="128">
-			</a>
-		</picture>
-		<picture>
-			<a href="games/game_of_life.html">
- 			<img src="images/game_of_life.gif" width="128" height="128">
-			</a>
-		</picture>
-		<picture>
-			<a href="games/tetris_for_idiots.html">
- 			<img src="images/tetris_for_idiots.gif" width="128" height="128">
-			</a>
-		</picture>
-		<picture>
-			<a href="games/xo.html">
- 			<img src="images/xo.gif" width="128" height="128">
-			</a>
-		</picture>
-	</article>
-
+	<div id="games"></div>
 	<footer>
 		Copyright 2019 - SergeyMerkulov.github.io
 	</footer>
 	<!-- загрузка javascript скриптов должна осуществляться после загрузки остальной основной части сайта. Это важно для поисковых систем и пользователей! -->
- 
-
-
-
-
+	<script type="text/babel">
+		const gamesData = [
+			{
+				id: 1,
+				staicImg: 'images/tetris.gif',
+				dynamicImg: 'images/dyn_tetris.gif',
+				href: 'games/tetris.html',
+				description: 'Tetris'
+			},
+			{
+				id: 2,
+				staicImg: 'images/The Adventures of the Red Square.gif',
+				dynamicImg: 'images/dyn The Adventures of the Red Square.gif',
+				href: 'games/The Adventures of the Red Square.html',
+				description: 'The Adventures of the Red Square'
+			},
+			{
+				id: 3,
+				staicImg: 'images/game_of_life.gif',
+				dynamicImg: 'images/dyn_game_of_life.gif',
+				href: 'games/game_of_life.html',
+				description: 'Game of life'
+			},
+			{
+				id: 4,
+				staicImg: 'images/xo.gif',
+				dynamicImg: 'images/dyn_xo.gif',
+				href: 'games/xo.html',
+				description: 'xo game'
+			}			
+		];
+		class Game extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = {
+					img: this.props.staicImg,
+				}
+				this.imgOver = this.imgOver.bind(this);
+				this.imgOut = this.imgOut.bind(this);
+			}
+			imgOver() {
+				this.setState( { img: this.props.dynamicImg } );
+			}
+			imgOut() {
+				this.setState( { img: this.props.staicImg } );
+			}
+			render () {
+				return (
+					<picture className="game">
+						<a href={ this.props.href }>
+							<img  width="128" height="128" src={ this.state.img } onMouseOver={this.imgOver} onMouseOut={this.imgOut} />
+							<div>
+								{ this.props.description }
+							</div>
+						</a>
+					</picture>
+				)
+			}
+		}
+		class App extends React.Component {
+			constructor() {
+				super();
+				this.gameComponents = gamesData.map( game => <Game staicImg={game.staicImg} dynamicImg={game.dynamicImg} herf={game.href} description={game.description} /> );
+			}
+			render () {
+				return (
+					<div className="games-container">
+						{ this.gameComponents }
+					</div>
+				)
+			}
+		}
+		ReactDOM.render(<App/>,document.getElementById('games'));
+	</script>
 </body>
 </html>
