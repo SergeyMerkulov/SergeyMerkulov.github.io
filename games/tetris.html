@@ -24,6 +24,17 @@
 	</style>
 </head>
 <body onload="init();">
+<span id="Level">score 0</span>
+<span id="record">(record 0)</span>
+<br>
+<canvas id="a" >not working</canvas>
+<br>
+<button class="buttons" onclick="moveToLeft();">Left</button>
+<button class="buttons" onclick="moveToRight();">Right</button>
+<br>
+<button class="buttonTurn" onclick="newTurn();">Turn</button>
+<br>
+<button onclick="pauseRun();" id="PauseRun">Pause</button>
 <script>
 
 //рандом включая верхнюю и нижнюю границы
@@ -630,16 +641,5 @@ gameLoop();
 
 
 </script>
-<span id="Level">score 0</span>
-<span id="record">(record 0)</span>
-<br>
-<canvas id="a" >not working</canvas>
-<br>
-<button class="buttons" onclick="moveToLeft();">Left</button>
-<button class="buttons" onclick="moveToRight();">Right</button>
-<br>
-<button class="buttonTurn" onclick="newTurn();">Turn</button>
-<br>
-<button onclick="pauseRun();" id="PauseRun">Pause</button>
 </body>
 </html>
