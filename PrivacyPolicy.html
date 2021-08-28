@@ -1,0 +1,29 @@
+<!DOCTYPE html> 									<!-- HTML5 -->
+<html>
+ <head>
+  <title>Privacy Policy</title>
+  <meta name="description" content="Privacy Policy of Sergey Merkulov">
+  <meta name="keywords" content="privacy, policy">
+  <meta name="author" content="Sergey Merkulov">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">		<!-- настройка области просмотра, чтобы страница выглядела хорошо на всех устройствах (пк, смартфон, планшет и т.д.) -->						<!-- указать поисковому роботу что надо индексировать данную страницу и следовать по ней. Если этого не надо то используются "noindex, nofollow" -->
+  <style>
+   body {
+    text-align: center;
+   }
+   button {
+    padding: 20px 100px;
+    margin: 20px;
+    font-size: large;
+   }
+  </style>	
+ </head>
+ <body>
+  <h1>The Privacy Policy.</h1>
+  <h1>We do not interesting and do not need your privacy information!</h1>
+  <button>OK</button>
+  <div></div>
+  <script>
+  document.querySelector('button').addEventListener('click',function(){document.querySelector('div').innerHTML='Good!';document.querySelector('div').style.color='#0f0';});
+  </script>
+ </body>
+</html>
