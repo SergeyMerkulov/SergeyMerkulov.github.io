@@ -1,95 +1,58 @@
-header,footer,article,nav
-{
-	display: block;
-}
+body{font-family: arial;}
+.row{display:flex;flex-flow:row wrap;justify-content:center;margin:0.2rem;}
+.col-1{flex-basis:25%;}
+.col-2{flex-basis:50%;}
 
-header .email
-{
-	float: right;
-	font-family: arial;
-}
-
-header .title
-{
-	font-family: arial;
-	font-size: x-large;
-	font-weight: bold;
-}
-
-header
-{
+header .email {float: right;}
+header .title {font-size: x-large;font-weight: bold;}
+header{
 	max-width: 1000px; 	/* Максимальная ширина пикселах */
-	padding: 10px;		/*отступ текста по всем краям внутри рамки*/
-	margin: 10px;		/*отступ текста по всем краям снаружи рамки*/
-	background: url(../images/header_background.svg);
+	padding: 1rem;		/*отступ текста по всем краям внутри рамки*/
+	margin: 1rem;		/*отступ текста по всем краям снаружи рамки*/
+	background: url(../images/header_background.svg) no-repeat;
 	background-size: 100%;
-	padding-bottom: 30px;
+	padding-bottom: 2rem;
 
 	margin-left: auto;
 	margin-right: auto;
 }
-
-header details
-{
-	padding: 5px;		/*отступ текста по всем краям внутри рамки*/
-	margin: 5px;		/*отступ текста по всем краям снаружи рамки*/
-	border: 1px solid #000000;
+header details{
+	padding: 0.4rem;		/*отступ текста по всем краям внутри рамки*/
+	margin: 0.4rem;		/*отступ текста по всем краям снаружи рамки*/
+	border: 1px solid #000;
 }
-
-nav
-{
+nav{
 	max-width: 1000px; 	/* Максимальная ширина пикселах */
-	padding: 5px;		/*отступ текста по всем краям внутри рамки*/
-	margin: 5px;		/*отступ текста по всем краям снаружи рамки*/
+	padding: 0.4rem;		/*отступ текста по всем краям внутри рамки*/
+	margin: 0.4rem;		/*отступ текста по всем краям снаружи рамки*/
 
 	margin-left: auto;
 	margin-right: auto;
 }
-
-nav a
-{ 
+nav a{ 
 	text-decoration: none; /* Отменяем подчеркивание у ссылки */
 }
-
-
-
-
-
-
-
-
-
-
-nav ul li
-{
+nav ul li{
 	display:inline;
 }
-
 nav ul li a,
-nav ul li a:visited
-{
+nav ul li a:visited{
 	display:block;
-	margin:6px;
-	padding:6px;
+	margin:0.4rem;
+	padding:0.4rem;
 }
-
-nav ul li a:hover
-{
-	margin:5px;
-	padding:5px;
-	border: 1px solid #000000;
+nav ul li a:hover{
+	margin:0.4rem;
+	padding:0.4rem;
+	border: 1px solid #000;
 }
-
-section
-{
+section{
 	align:center;
 }
-
-article
-{
+article{
 	max-width: 1000px; 	/* Максимальная ширина пикселах */
-	padding: 15px;		/*отступ текста по всем краям внутри рамки*/
-	margin: 25px;		/*отступ текста по всем краям снаружи рамки*/
+	padding: 1rem;		/*отступ текста по всем краям внутри рамки*/
+	margin: 1.5rem;		/*отступ текста по всем краям снаружи рамки*/
 	text-align:justify;	/*выравнивание под прямоугольник в котором расположен текст*/
 	font-family: arial;
 	font-size: normal;
@@ -97,21 +60,29 @@ article
 	margin-left: auto;
 	margin-right: auto;
 }
-
 .article_header
 {
-	padding: 5px;		/*отступ текста по всем краям внутри рамки*/
-	margin: 5px;		/*отступ текста по всем краям снаружи рамки*/
-	font-family: arial;
+	padding: 0.4rem;		/*отступ текста по всем краям внутри рамки*/
+	margin: 0.4rem;		/*отступ текста по всем краям снаружи рамки*/
 	font-size: large;
 	font-weight: bold;
 	text-align:center;
 }
-
-footer
-{
-	padding: 10px;		/*отступ текста по всем краям внутри рамки*/
-	margin: 10px;		/*отступ текста по всем краям снаружи рамки*/
+article input,textarea {
+	padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+	width: 60%;
+}
+article textarea {
+	height: 6rem;
+}
+article input[type="submit"] {
+	color:#fff;
+	background-color:#88f;
+	border-radius:6px;
+}
+footer{
+	padding: 0.8rem;		/*отступ текста по всем краям внутри рамки*/
+	margin: 0.8rem;		/*отступ текста по всем краям снаружи рамки*/
 	text-align: center;	/*расположение текста посередине*/
-	font-size: 0.8em;
+	font-size: 0.8rem;
 }
